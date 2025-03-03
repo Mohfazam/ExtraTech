@@ -8,4 +8,8 @@ wss.on("connection", function (socket) {
     setInterval(() => {
         socket.send("HEllo " + Math.round(100 * (Math.random())));
     }, 2000);
+    socket.on("message", function (e) {
+        console.log(e);
+        socket.send(e.toString() + " " + Math.round(100 * (Math.random())));
+    });
 });
