@@ -1,14 +1,19 @@
 import { WebSocketServer } from 'ws'
 
 const wss = new WebSocketServer({ port: 8080 });
+console.log("Server Started");
 
 //event handler
 wss.on("connection", function(socket){
     console.log("User Connected");
 
-    socket.on("message", function(e){
+    socket.on("message", (e) => {
         if(e.toString() === "ping"){
             socket.send("pong");
         }
     });
+
+    setInterval(() => {
+        socket.send("Hello");
+    }, 1000);
 });
