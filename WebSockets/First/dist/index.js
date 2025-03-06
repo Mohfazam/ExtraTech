@@ -11,7 +11,4 @@ wss.on("connection", function (socket) {
             socket.send("pong");
         }
     });
-    setInterval(() => {
-        socket.send("Hello");
-    }, 1000);
 });

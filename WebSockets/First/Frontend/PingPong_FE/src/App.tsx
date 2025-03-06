@@ -3,7 +3,7 @@ import './App.css'
 
 function App() {
 
-  const [Ws, setWs] = useState();
+  const [Ws, setWs] = useState(); 
 
   function sendMessage(){
     Ws.send("ping");
@@ -13,7 +13,7 @@ function App() {
     const ws = new WebSocket("ws://localhost:8080");
     
     setWs(ws);
-    ws.onmessage = (e) => {
+    ws.onmessage = (e) => { 
       console.log(e.data);
     }
   }, []);
