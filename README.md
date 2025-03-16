@@ -196,3 +196,12 @@ This repository is a collection of foundational projects I built while learning 
 
 ---
 
+
+
+
+
+
+
+npm init -y
+npm i typescript
+npx tsc --init
