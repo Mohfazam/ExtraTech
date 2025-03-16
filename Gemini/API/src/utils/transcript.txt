@@ -1,0 +1,1195 @@
+12.88 - all right let's get started
+15.36 - welcome back to double06 today we are
+17.199 - doing some of the coolest data
+18.56 - structures we will see in this class
+20.16 - maybe some of the coolest data
+21.52 - structures ever binary trees
+24.4 - uh you've certainly seen trees in many
+27.039 - forms
+27.68 - uh in the past including in this class
+30.48 - we've talked to use trees as a lower
+32.239 - bound tool
+32.96 - for uh in the decision tree model
+36.32 - but this lecture and the next lecture
+38.399 - we're going to build
+40.079 - one data structure that is almost
+42.719 - superior to all data
+44.0 - structures we have seen and can do
+46.64 - almost anything
+48.0 - really fast first recall all the data
+51.44 - structures we've seen so far arrays
+53.12 - linked lists
+54.0 - dynamic arrays sorted arrays hash tables
+57.36 - and the two sets of operations we're
+60.079 - interested in supporting
+61.28 - the two interfaces one was sequences
+63.359 - where we're maintaining items in a
+64.799 - specified order we want to be able to
+66.4 - insert
+66.96 - an item right after another item or
+68.72 - delete an item in the middle of the list
+70.4 - and always be able to access the ith
+72.0 - item we haven't seen
+73.76 - any good data structures for that
+75.28 - problem we we're really good at
+77.6 - inserting and deleting
+78.799 - at the beginning or the end of the
+80.159 - sequence but we haven't seen anything
+82.64 - that's efficient at ins
+84.479 - inserting in the middle of the list or
+86.32 - deleting in the middle of the list
+87.52 - linked list
+88.24 - you can't even get to the middle in less
+90.32 - than linear time
+91.52 - uh array you can get to the middle but
+93.36 - if you make any changes you have to do
+94.96 - this shift which is very expensive
+97.04 - so today or sorry next lecture for the
+100.24 - first time we will see
+102.159 - all of those operations efficient
+106.64 - i'll mention our goal where efficient
+110.399 - means
+111.68 - logarithmic so we're not quite as good
+115.68 - as linked lists and dynamic arrays at
+117.759 - inserting and
+118.799 - deleting at the ends those there that we
+120.88 - achieve constant or constant amortized
+122.96 - time
+123.68 - but up to this log factor we're going to
+125.84 - get the best of all worlds where we can
+127.6 - solve
+128.0 - all the things all the operations that
+130.879 - don't
+131.52 - build or iterate through the entire
+132.879 - structure that of course takes linear
+134.48 - time
+135.36 - but we can do all the others in
+136.48 - logarithmic time for sets
+138.959 - sets were maintained maintaining a bunch
+140.8 - of items which have
+142.0 - intrinsic keys and we want to
+145.12 - search by key so hash tables are great
+148.319 - if you're only doing exact searches if
+150.72 - you want to find a key
+152.16 - and get yes or no is it in there and if
+153.76 - it's in there give me the item
+156.16 - that's what python dictionaries do and
+159.12 - they're
+159.44 - great at inserting and deleting but
+161.44 - they're really bad
+162.959 - at find previous and find next this is a
+166.319 - the unsuccessful case if i search for a
+168.48 - key and it's not in my structure
+170.8 - i would like to know more than just the
+172.64 - answer no i'd like to know what the
+175.04 - previous and next items that are
+177.04 - actually in the structure
+178.48 - so what are my nearest matches when i
+180.72 - search by key that's a natural query
+183.12 - and the only data structure we have
+185.2 - that's good at it is a sorted array
+187.36 - because binary search gives this to us
+189.68 - if we search for a key by binary search
+191.599 - and we don't find it
+193.04 - the position that we end up at is right
+195.04 - between the previous and next one
+197.68 - but of course sorted arrays are terrible
+199.36 - for dynamic
+200.72 - operations we don't know how to maintain
+203.76 - we can't maintain a sorted array without
+205.519 - any gaps
+206.799 - when we're doing insertions and
+207.92 - deletions in some sense today
+210.0 - and next class binary trees let us
+212.159 - represent
+213.28 - a sorted order or in general an order of
+215.519 - items
+216.56 - dynamically and still allow us to do
+219.68 - very fast things like get out of i and
+222.319 - find previous of the key
+223.92 - so that's our goal we're not going to
+225.84 - quite get to this goal today
+227.68 - we're going to get an incomparable thing
+232.0 - called the height of the tree and then
+234.159 - on thursday we'll be able to finish and
+235.92 - achieve this goal today is just
+237.68 - in service to that goal
+242.239 - so what is a binary tree
+245.68 - let me draw an example
+249.439 - and then define it more precisely
+252.4 - mathematicians will call this a rooted
+254.239 - binary tree
+255.2 - because in case you've seen that in o42
+257.199 - say
+259.84 - here is a picture
+276.32 - so this is an example of a binary tree
+279.04 - it has a bunch of nodes which we're
+280.4 - drawing in circles it has
+281.68 - items in the nodes which were i'm
+283.68 - writing as letters here
+285.44 - so this is item a item b item c and it
+288.32 - has these
+289.04 - links between them this is like linked
+290.72 - lists
+292.479 - but in general a node
+296.0 - x is going to have a parent pointer
+301.52 - a left child
+304.56 - left pointer and a right child
+307.759 - right pointer and it also has
+311.52 - an item inside of it so i'm going to
+314.479 - talk about node.left
+316.0 - is a pointer to the left
+319.36 - the node down here node.right
+321.52 - node.parent node.item
+323.44 - gives me so if i
+326.72 - look at the node a its item is
+329.84 - a so let me draw for you
+337.12 - some examples
+353.759 - okay the parent of a is nothing so we
+356.88 - call a
+357.44 - the root node there's going to be a
+358.72 - unique node that has no parent
+361.36 - it's uh sad to have no parents but there
+364.4 - you go
+365.36 - then we have node b which whose parent
+367.6 - is a
+368.639 - node c is parent its apparent is a node
+371.12 - d its parent is b
+372.8 - node e its parent is b and node f its
+375.6 - parent is d
+378.16 - alphabetical order here happens to be
+379.84 - ordered by parent
+383.039 - then we have left pointers i'll just do
+384.72 - a few of them so left pointer of
+386.72 - a is b right pointer of a
+390.639 - sorry b the node uh these should all be
+393.28 - notes
+396.88 - i'm circling for nodes and just writing
+398.639 - the letter for the item
+400.08 - make it clear that those are different
+401.28 - things uh the right pointer for a
+403.84 - is c left pointer for b is d
+407.199 - right pointer for b is e and so on
+411.039 - okay so in other words each of these
+412.56 - lines is a bi-directional pointer
+415.039 - uh in this direction it's the parent
+416.72 - direction in this direction it's left in
+418.639 - this case
+420.08 - because it's bidirectional we don't draw
+421.599 - the arrows we just draw
+424.319 - undirected lines okay
+427.759 - this is in general what a binary tree
+429.28 - looks like
+431.28 - a key invariant is that if you take a
+434.08 - node
+435.039 - and say go to its left pointer left
+438.08 - child and then go to that node's parent
+442.4 - this should be the same as node right so
+445.44 - that's just saying these
+446.8 - are in parent is always the inverse of a
+449.12 - left or right operation
+450.479 - this is also true for write
+454.479 - okay and that's a binary tree now the
+456.639 - intuition of what's going on here
+458.56 - is you could you could say it's we're
+460.88 - inspired by
+461.68 - a linked list linked list had a very
+464.639 - similar structure
+467.44 - maybe an item or there's a node it had
+470.4 - an item in it
+471.919 - and it had a next pointer and it had a
+474.319 - previous pointer
+476.56 - so in some sense what we're if it's
+478.24 - doubly linked we had a previous pointer
+479.68 - it was singly linked we only had a next
+481.28 - pointer
+482.4 - and if you think about the limits of
+485.52 - linked lists especially singly linked
+487.12 - lists
+487.759 - if you just have one pointer per node
+490.08 - you can only build a list
+492.16 - and so the result is uh
+497.12 - you know this this node is going to have
+500.319 - depth linear depth means how many
+503.599 - pointers do i have to follow to get here
+505.84 - from the root of the structure which for
+507.84 - linked lists was the head
+509.199 - it was doubly linked okay i can have a
+511.039 - head and a tail and i can put
+512.64 - bi-directions
+513.839 - on here but then still the middle item
+515.599 - has depth linear so there's no way to
+517.599 - get there
+518.479 - in less than linear time with binary
+520.32 - trees because we use
+522.08 - two types of next pointers left and
+524.399 - right
+525.44 - we can build a tree and we know trees in
+527.44 - general have logarithmic
+529.04 - can have logarithmic height
+532.08 - and so it's possible in a tree to get to
+535.279 - any node starting from the root in only
+537.76 - log n traversals so that's the intuition
+539.76 - of what's going on
+541.04 - now today
+544.8 - we're going to talk about the height of
+546.8 - a tree
+548.08 - so let me define
+552.56 - i'm going to need a couple definitions
+554.08 - here
+558.56 - subtree and height
+563.839 - of a node uh
+567.04 - so a tree decomposes into sub trees
+570.48 - so for example the subtree rooted at b
+573.44 - or the subtree of b
+575.04 - is this portion of the tree
+580.32 - so it's that node and all of the
+582.64 - descendants of this node so because we
+584.64 - have parents and children
+586.08 - we can generalize in the familial tree
+588.959 - sense
+589.6 - we can talk about ancestors of a node so
+592.0 - the ancestors of f
+593.2 - are its parent its grandparents its
+595.519 - great grandparents and so on
+597.279 - together all of these are called
+599.839 - ancestors
+601.2 - it's a it doesn't quite correspond to
+602.8 - familiar trees because familial trees
+604.959 - you have
+605.839 - two parents here you only have a unique
+607.68 - parent
+610.0 - or the poor root has no parent
+613.2 - we also talk about it's like mixed
+615.839 - metaphors
+616.48 - leaves of the tree
+619.519 - these are
+623.519 - people with no children parents will
+626.72 - complain about this
+627.68 - but many like many of us in this room we
+631.92 - have no children yet so we were called
+633.36 - leaves
+634.48 - you can tell your parents hey i'm just a
+636.0 - leaf you know blowing in the wind
+639.44 - so uh you know like this it's so many
+642.32 - mixed metaphors but we
+643.44 - always draw trees downwards like the
+646.64 - root structure of a tree
+648.72 - yet we call the ends of the roots leaves
+651.6 - which is upside down
+652.64 - anyway that's trees for you lots of
+655.92 - entertaining analogies okay but
+657.44 - ancestors are useful descendants are
+659.44 - also useful
+660.0 - so the descendants of b are all of its
+662.079 - children and all of its grandchildren
+663.839 - and all the way down
+664.8 - but just within the subtree so subtree
+667.76 - of x
+668.48 - consists of x and its descendants
+676.88 - and we think of x being the root
+680.56 - of that subtree so we're kind of
+682.24 - forgetting about everything outside of
+684.24 - the sub tree
+685.12 - when we talk about sub tree of x let's
+688.399 - talk about the
+689.44 - depth of a node
+693.279 - depth of the node is
+696.88 - i guess the number of its ancestors
+703.44 - right um but way i usually think of it
+707.12 - is
+707.36 - the number of number of edges
+712.88 - and in the path from
+717.279 - x up to the root
+722.48 - so every node has a unique path that
+724.88 - goes upwards
+726.16 - until it can't go up anymore so the
+728.88 - depth of e
+729.68 - is two because there are two edges uh
+732.8 - one two in the path from the root a to e
+736.399 - so maybe i'll write some depths uh depth
+738.959 - of e is two
+740.32 - depth of these guys is one depth of the
+742.56 - root is zero
+744.399 - two three so those are
+748.399 - depth i'm going to
+753.04 - clean this up a little bit
+758.88 - so we can focus on the image all right
+761.279 - height so depth is measuring
+763.04 - downwards because we you know if you
+764.8 - imagine depth within water
+766.639 - this is uh the surface of the water and
+769.36 - then we measure how deep you are from
+771.2 - the surface
+772.16 - height is in the reverse direction we're
+774.16 - going to measure from the leaf level
+776.0 - up because leaves are the bottom of the
+778.079 - tree so height
+779.6 - of a node is going to be
+783.44 - the number of edges
+787.2 - in the longest downward path
+799.519 - okay which is the same thing as the
+802.8 - maximum depth of a node
+806.0 - in x's subtree
+812.8 - let's do height in red
+817.04 - so uh how long is the longest path from
+819.12 - f to a leaf well f is a leaf so all
+821.04 - leaves have
+822.16 - depth zero sorry height zero
+825.92 - get it backwards um
+829.279 - d here it's so there are two
+832.399 - ways to go down this doesn't go to a
+834.399 - leaf uh this one goes to a leaf
+836.48 - and its height is zero so this height is
+839.6 - one there's one edge to a leaf here b
+842.8 - has two leaves it can get to we take the
+845.199 - longest one so that's length two
+848.32 - a similarly has height three
+856.24 - okay so height we measure upward depth
+859.68 - we measure
+860.48 - downward well one thing we care about uh
+863.36 - is just the height
+864.32 - of the overall tree uh which
+867.36 - is the height of the root
+872.72 - and i'm going to call that h because
+873.92 - we're going to use it a lot
+879.44 - and what we're going to achieve today is
+881.519 - all of these running times instead of
+883.199 - being log n
+884.24 - they're going to be order h
+888.72 - so today our goal is to get all the
+891.6 - operations we care about
+893.04 - in order h type
+897.04 - and then next lecture we're going to
+899.519 - guarantee that h is always log n
+901.6 - and then we'll get log n time so we need
+904.0 - to do a bunch of work to achieve log n
+905.6 - today we'll do the work that's all the
+907.12 - tree manipulation
+908.48 - and as long as your tree is nice and
+910.48 - shallow it doesn't have high height
+912.88 - if it has logarithmic height everything
+914.32 - will be log n of course there are trees
+916.48 - that are really bad
+918.079 - right we can have a tree
+924.8 - a tree like this which is basically a
+927.76 - linked list
+929.199 - where we only use right pointers and all
+931.12 - the left pointers are none
+932.639 - so there are height there are trees that
+934.8 - are very high
+935.759 - have high height um we want to avoid
+938.639 - these but we won't worry about that till
+940.079 - next lecture question
+945.44 - what is the height of node c height of
+947.199 - node c is zero
+948.8 - because the length of the longest path
+950.399 - the number of edges in the longest
+952.0 - downward path is zero yeah we're
+954.72 - counting edges not vertices
+958.399 - uh yeah so the height of the tree is of
+962.399 - course just the depth
+963.6 - the maximum depth i think that's right
+965.44 - so the height here is
+967.44 - three and the maximum depth is this
+969.6 - terribly drawn three
+971.199 - so these happen to correspond in the
+972.88 - maximum case
+974.32 - but we use height to always mean maximum
+977.279 - and so that's why
+978.72 - we talk about the height of the tree
+980.639 - depth of the tree is not defined
+982.079 - just depths of notes okay
+985.92 - um how do we use these trees to
+989.04 - represent
+989.68 - either a sequence or a set uh
+993.279 - i claim that there is a natural order
+996.639 - in trees called the traversal order
+1007.839 - of nodes or items
+1011.6 - and the tree so i'm going to define a
+1014.399 - particular order
+1015.92 - uh say in this example
+1019.68 - let's do the example first the
+1024.24 - traversal order
+1029.839 - is going to be f
+1032.959 - d b
+1036.839 - e a
+1040.319 - c i feel like i'm in music class this is
+1043.36 - my guitar or something but it's not i
+1045.439 - hope um
+1046.88 - if it is a coincidence so
+1050.64 - what is this order what i'd like to do
+1052.96 - is um
+1054.48 - recursively define an order where the
+1057.44 - root of the tree is somewhere in the
+1058.72 - middle
+1059.52 - and everything in the left subtree is
+1062.4 - left
+1062.96 - earlier in the order than the root and
+1064.88 - everything in the right subtree is later
+1067.12 - so you can see here c comes after a and
+1070.16 - then all the other nodes come before
+1071.76 - a and recursively if i look at a node b
+1075.919 - this node b which appears over here e is
+1078.96 - to the right of it
+1080.24 - but it's this is all to the left of a so
+1083.12 - e
+1083.44 - is between b and a would be on the left
+1086.96 - and then f and d are to the left of that
+1088.96 - and again f comes before d
+1090.72 - because f is in the left subtree of d
+1094.64 - okay so we say
+1098.0 - for every node
+1104.4 - the nodes
+1107.6 - in x dot left are before x
+1114.48 - and the nodes in x dot right are come
+1117.919 - after x
+1123.12 - and this uniquely defines an order
+1124.72 - called a traversal order
+1126.32 - it's also called the in-order traversal
+1128.0 - order it's called in order because it's
+1130.48 - in the traversal order so it's very
+1132.32 - circular but
+1134.08 - you may have seen inorder traversal this
+1135.76 - is the same thing
+1137.2 - there's a very simple algorithm for
+1138.64 - computing this
+1140.72 - if i want to iterate
+1144.08 - uh let's call this yeah if i want to
+1147.36 - iterate
+1148.32 - all the nodes within a subtree x rooted
+1151.6 - by x
+1153.12 - i just iterate on all of the
+1156.559 - nodes in the left subtree then i output
+1159.919 - x itself
+1162.799 - then i iterate on all the nodes in the
+1165.2 - right subtree
+1170.72 - okay you may have seen that algorithm
+1172.559 - before this is just another way to
+1174.32 - codify the same thing
+1175.679 - the result is all the nodes within a
+1177.52 - subtree appear continuously with no
+1179.6 - interruptions
+1180.799 - and then the parent parent's going to
+1183.36 - come before after depending on whether
+1184.799 - it's the left or right child
+1188.4 - okay so and now it's just a matter of
+1191.36 - connecting the dots because we're
+1192.72 - representing an order
+1194.64 - and for sequence that is going to be the
+1196.72 - sequence order if we want to store n
+1198.32 - items x0 through x1
+1200.16 - we're going to build some kind of tree
+1202.799 - we're going to put x0 here
+1204.159 - x1 here x2 here x3 here x4 here x5
+1207.52 - here you can see i'm very used to
+1209.52 - dealing with traversal orders it takes a
+1210.96 - little while
+1211.76 - uh you could also see it here we're
+1212.96 - going to put x1 on this node x2
+1215.52 - sorry x0 here x1 here x2 here and so on
+1218.32 - that's the same order that i gave
+1221.76 - okay that's for sequences for sets that
+1223.6 - order is just going to be the sorted
+1225.12 - order
+1225.76 - and we're going to be effectively
+1227.2 - representing the sorted order of keys
+1229.36 - say increasing but before we get to that
+1233.28 - let's talk about different operations we
+1236.48 - can do
+1239.52 - just playing around with traversal order
+1243.84 - and then we're going to use these to
+1245.12 - build the sequence and set operations
+1247.6 - that we care about
+1249.52 - so first operation i'll call
+1252.72 - subtree first seems appropriate that
+1255.44 - it's called first
+1258.48 - it's the first one so given a node
+1262.64 - which i'll call node uh this defines
+1266.08 - a subtree
+1270.08 - which usually we draw subtrees as
+1272.48 - triangles hanging off of the node
+1276.24 - so here i would write x
+1279.36 - and then there's some subtree of all the
+1281.2 - descendants of x
+1283.12 - so with subtree first i would like to
+1285.44 - say among
+1286.4 - all the nodes in this subtree
+1294.24 - which comes first in traversal order
+1303.12 - so just restricting to
+1306.96 - that subtree so tree of that
+1315.039 - so where is it in this tree
+1323.84 - uh note is actually part of many sub
+1325.52 - trees good question uh
+1327.2 - f f is in its own in the sub tree of f
+1330.0 - uh
+1330.4 - f is also in the subtree of d f is in
+1332.48 - the sub tree of b like i drew
+1334.08 - f is in the subtree of a it's in the
+1335.84 - subtree of exactly its ancestors
+1340.559 - but in this operation when we define
+1343.12 - node
+1344.0 - our node only defines one sub-tree it is
+1346.32 - the root of only one sub-tree
+1348.08 - and that's the sub-tree we're talking
+1349.36 - about and then i want to know among all
+1352.24 - those nodes which includes node itself
+1354.559 - and other things uh which one comes
+1357.2 - first
+1357.679 - in this traversal order this is like
+1359.28 - practice with traversal orders
+1362.4 - so where should i look for this node
+1369.2 - yeah the leftmost leaf
+1372.799 - in the picture it's here but pictures
+1374.96 - can be deceiving
+1377.12 - we just want to go left
+1380.24 - as much as possible when i say go left i
+1382.48 - mean this iteration node equals
+1386.84 - node.left you just look at our
+1388.799 - definition
+1390.4 - all the nodes on the left come before x
+1393.28 - and all the nodes in the right so
+1394.88 - it's got to be in the left subtree if
+1396.32 - there is one uh
+1398.559 - of course we can't do this forever so
+1401.6 - say until we would fall off the tree
+1408.159 - which means uh node is none
+1414.72 - okay but we stopped uh before that would
+1418.559 - happen
+1419.679 - so this is like uh the directions like
+1421.6 - oh you keep driving until you see the
+1423.36 - store
+1423.919 - and it's the block right before that
+1425.679 - it's like well that's not very helpful
+1427.679 - so uh you keep iterating node equals no
+1429.52 - dot left until node becomes
+1430.96 - none and then you undo one step okay you
+1433.84 - all know how to program that it's not
+1435.2 - hard
+1435.919 - um so that last non-none
+1438.96 - node which might actually be the root it
+1440.88 - might be node
+1442.4 - maybe it has no left children but in
+1444.88 - that case i claim node is the very first
+1446.96 - in its in its subtree traversal order
+1448.88 - because
+1449.679 - if there are no nodes in the left that
+1451.919 - come before x then x is actually first
+1455.12 - okay and that so that's it uh return
+1458.4 - node
+1462.4 - so i'm modifying node in place here and
+1464.64 - the very last one before i hit none
+1466.48 - that's the minimum
+1467.44 - that's the first item in the traversal
+1469.679 - order similarly you can define subtree
+1471.679 - last
+1472.799 - okay let's do a more interesting one
+1475.36 - successor
+1481.36 - node so in this case i want to know what
+1485.039 - is
+1485.44 - the next
+1490.0 - after node in the
+1493.6 - overall tree's traversal order okay here
+1496.96 - i was restricting to
+1498.84 - uh a single sub tree now i'm thinking
+1501.919 - about the entire tree in the entire
+1503.52 - traversal order
+1504.48 - and given a node i want to know which
+1506.4 - one comes next
+1508.08 - call this the successor i feel like i
+1511.36 - should
+1511.76 - make some kind of royal family joke now
+1514.88 - but
+1515.36 - i don't know how um so
+1518.64 - every node has a unique successor let's
+1520.64 - do let's do some examples
+1522.64 - so we can start with f the successor of
+1526.08 - f if we just index into this
+1528.0 - list the successor is d okay
+1531.12 - successor of d is b successor b is ease
+1534.0 - okay it's very easy to read successors
+1535.76 - off
+1536.159 - when i have the traversal order written
+1537.6 - down but let's think about how to do it
+1539.44 - in the tree
+1541.44 - okay uh
+1545.039 - let's see there are going to be two
+1546.559 - cases
+1548.48 - if i look at the successor of a it has a
+1552.159 - right child
+1553.84 - and in this case the right child of a is
+1556.159 - the successor but that's not always the
+1557.919 - case
+1558.64 - i don't have a good example but if i had
+1561.76 - another node here let's call it
+1564.08 - g uh the successor of a
+1568.08 - is actually g right because
+1571.36 - all of these items come after a in the
+1574.159 - order
+1574.88 - but which one comes first the leftmost
+1577.2 - leaf
+1578.559 - okay that's the problem we just solved
+1580.72 - so if a has a right child
+1582.64 - what we want is the leftmost leaf the
+1584.72 - first
+1585.679 - thing in that subtree
+1590.0 - the right subtree right child sub tree
+1592.48 - so this is case one
+1593.919 - if uh node.right
+1597.76 - so if we have a right child then
+1600.799 - what we want is
+1604.64 - subtree first
+1608.72 - of the right child
+1614.799 - great we can reduce to this other
+1616.799 - operation
+1618.72 - but what if the node doesn't have a
+1621.679 - right child
+1622.72 - so for example it could be a leaf say
+1625.52 - we're taking
+1626.0 - the successor of i mean it doesn't have
+1628.4 - to be a leaf could be f which has no
+1629.919 - children it could be d which has one
+1631.6 - child but no right child
+1634.08 - so what's the successor of f well it's d
+1637.12 - which in this case is the parent but
+1639.84 - it's not always for example if we do
+1641.52 - successor of e
+1642.399 - its parent is actually earlier in the
+1644.48 - order because e was a right child
+1646.48 - here f was a left child and so its
+1649.2 - parent
+1650.399 - was after
+1653.76 - successor of d happens to be b because
+1656.88 - uh it's per it was the left child of its
+1659.44 - parent
+1660.159 - okay so that seems like the easy case if
+1661.76 - we're the left child of our parent
+1663.2 - then our successor is our parent okay
+1667.039 - basing on this small example but we can
+1669.039 - argue it generally in a moment
+1670.24 - what's the successor of e uh well it's
+1672.799 - not b because that comes earlier in fact
+1675.12 - all the things in this in b sub tree
+1677.039 - come earlier or equal to
+1679.52 - e um so we have to keep going up
+1683.76 - and then it turns out the successor of e
+1685.6 - is a because this subtree
+1687.76 - was the left child of a because b was a
+1690.72 - left child with a
+1692.399 - so the general strategy is walk up the
+1695.039 - tree
+1697.52 - until we are we we go
+1700.799 - up a traversal whose reverse direction
+1703.039 - would be left
+1704.559 - okay so um walk
+1707.919 - up the tree when i say walk up i mean
+1710.799 - node equals node.parent
+1712.399 - iteration
+1720.32 - until
+1723.36 - we go up a left
+1726.799 - branch
+1730.48 - so this would mean that node before we
+1733.679 - do the change
+1734.64 - node equals node.parent node.parent.left
+1742.96 - okay so we can check that and then after
+1744.96 - we do that traversal that parent
+1747.279 - is exactly the node we're looking for
+1753.52 - okay why is this true in general let me
+1755.52 - draw a more generic picture
+1757.679 - so we're starting at some node
+1761.76 - and let's say its parent is to the right
+1765.36 - so it comes later in the order
+1767.44 - for a while sorry get this backwards
+1770.48 - we're doing successor
+1774.48 - so it goes to left for a while
+1778.32 - so these are all these nodes will come
+1779.919 - earlier in the order because by the
+1781.279 - definition everything in the right
+1782.48 - subtree comes after
+1783.919 - and at some point we have a parent
+1785.44 - that's to the right meaning this node
+1787.2 - was the left
+1788.32 - child of this parent and that node by
+1790.96 - definition will come
+1792.159 - after all of the nodes in here
+1795.279 - and could there be anything in between
+1797.2 - node and this
+1798.799 - uh this parent grandparent ancestor
+1803.2 - only if there was something in this
+1804.64 - subtree and we're in the case here
+1806.96 - where there is no right subtree of our
+1808.799 - original node
+1810.24 - so this this is where all the nodes in
+1812.08 - between node and here would be
+1813.76 - but there aren't any and therefore this
+1815.6 - is the successor
+1817.679 - so that's sort of the general argument
+1820.24 - why this
+1821.36 - works i see a question yeah
+1837.039 - placed into the traverse order so the
+1838.559 - traversal order is never explicitly
+1840.32 - computed
+1841.679 - what we're taught it's always implicit
+1844.08 - we can't afford to maintain
+1845.84 - this as say an array this is just
+1849.2 - in our heads maybe i will draw it with a
+1853.76 - cloud around it we're just thinking this
+1857.519 - okay it's not in the computer explicitly
+1860.24 - in the computer all we store is this
+1863.12 - and the reason is this is expensive we
+1865.12 - don't we can't maintain an array of
+1866.88 - things and be able to insert in the
+1868.32 - middle
+1868.799 - whereas this is cheap i can afford to
+1870.96 - maintain this structure
+1872.559 - and do all these things and so the
+1874.159 - reason we're talking about these
+1875.279 - operations is they're letting us
+1876.64 - manipulate the order or in this case
+1878.96 - letting us
+1879.84 - iterate through the order so this was an
+1881.919 - algorithm for iterating through the
+1883.12 - entire order
+1884.159 - but that takes linear time this was
+1887.2 - getting started in the order find me the
+1889.2 - first
+1890.559 - first thing the order and this was given
+1892.24 - one node find me the next one
+1894.96 - how long do these operations take
+1916.48 - right at most the height of the entire
+1918.399 - tree in fact it's going to be
+1920.159 - the depth of that first node but in the
+1922.48 - worst case that's the height of the
+1923.919 - entire tree
+1924.88 - in general all of these operations are
+1926.559 - going to be order h
+1928.72 - we need to think about it in each case
+1931.2 - except for this one which is order n
+1933.679 - so iterating through the whole thing um
+1936.24 - this in this case we're just calling
+1937.84 - subtree first so
+1938.96 - that takes order h time here we're
+1940.88 - walking up the tree instead of down but
+1942.48 - that's going to cost
+1943.279 - exactly the height of the node we happen
+1945.679 - to stop early but worst case order h
+1948.32 - for all this all the operations we
+1950.64 - consider today we just want to get an
+1951.919 - order h bound
+1952.88 - and later we will bound h so the point
+1955.84 - is these are
+1956.64 - fast if h is small like log n these are
+1959.919 - almost instantaneous
+1961.76 - whereas if i had to update the explicit
+1964.32 - traversal order
+1965.36 - say as an array i would have to spend
+1967.12 - linear time every time i make a change
+1969.679 - and yes it would be fast to do successor
+1972.48 - if i had this stored explicitly
+1974.48 - but maintaining it would be impossible
+1976.32 - maintaining it efficiently would be
+1977.6 - impossible
+1978.159 - question questions
+1984.96 - yes okay
+1993.84 - cool um so these were queries
+1997.679 - where i want to follow
+2001.2 - see what's what's next in the traversal
+2003.44 - sequence now let's talk about actually
+2005.279 - changing the traversal sequence so these
+2006.96 - are insert and delete operations
+2008.799 - these will correspond roughly to insert
+2011.519 - at or delete at
+2013.2 - but they're not quite we're not quite in
+2015.44 - sequence world yet
+2016.64 - instead we're going to focus on
+2018.32 - inserting or deleting in the middle
+2020.399 - of a subtree
+2027.44 - so i'm going to have two nodes
+2036.24 - so the
+2040.64 - in the traversal order
+2043.679 - so node already exists in the tree new
+2046.72 - is a new node that does not yet exist in
+2048.639 - the tree hence i call it new
+2050.159 - and what i'd like to do is insert new
+2053.919 - right after node and there's a symmetric
+2056.96 - operation which is insert before
+2058.639 - it will be implemented almost
+2059.919 - identically so we'll just focus on after
+2064.639 - so i want to insert this new node in the
+2066.399 - traversal order which again is in our
+2067.839 - heads this is all
+2068.8 - in in our thought bubble
+2073.28 - that's what we want to achieve and we
+2075.359 - have to do it by manipulating
+2077.52 - this tree and however we change the tree
+2079.76 - it defines a new traversal order
+2082.879 - so maybe let's do an example first
+2101.68 - actually i probably want this universal
+2104.64 - order
+2106.24 - keep track of that so uh
+2109.52 - let's say the first thing we want to do
+2113.359 - uh is insert
+2119.28 - g before e
+2122.88 - i want to illustrate both of the
+2124.88 - operations
+2127.44 - insert h
+2130.72 - after e
+2134.079 - a
+2137.92 - okay um
+2141.28 - so insert g before e so conceptually
+2144.56 - what we want to do is insert g
+2146.48 - here and the way so we're given the node
+2150.32 - e
+2151.119 - and we're given a sort of empty node i
+2153.44 - mean a node that just contains g it
+2154.96 - doesn't have any pointers yet
+2156.64 - and we would like to put it before e
+2159.52 - where should i put it
+2162.0 - left child all right so that's
+2165.68 - this is an easy case if i'm trying to
+2167.44 - insert before and there's no left child
+2169.76 - stick it there if i'm trying to insert
+2171.44 - after and there's no right child
+2173.2 - stick it there easy so let me write down
+2175.76 - case one
+2180.56 - so here we're inserting after so if
+2183.2 - there's no
+2184.839 - uh right child
+2191.359 - put new
+2194.48 - there okay i'm using informal language
+2198.0 - here putting
+2198.96 - this new node there
+2202.72 - b instead of writing for example
+2204.48 - node.write equals new
+2207.599 - because that's only one operation you
+2209.359 - need to do one thing you would do is set
+2211.119 - node.write equals to new but you also
+2213.2 - have to set new's parent to be
+2214.72 - node.write
+2216.0 - so instead of worrying about those two
+2218.24 - pointer changes because we always do
+2219.599 - bi-directional pointer changes i'm just
+2221.04 - going to use
+2222.16 - pseudocode and then in recitation you'll
+2223.68 - see actual python code that does all
+2225.359 - this
+2227.44 - uh so then there's the other case
+2232.4 - so that should be the second example
+2234.64 - insert h
+2236.0 - after a right
+2240.4 - insert h after a so we already have a
+2242.8 - node after a
+2243.76 - in the right child in this right subtree
+2249.119 - so where do i want to put
+2252.24 - h relative to a
+2255.68 - well it should be to the right of a but
+2258.88 - it should be
+2260.4 - before c it should be to the left of c
+2263.28 - so that would mean we want to put it
+2265.119 - here okay in this case it was pretty
+2268.0 - easy because this tree was small
+2270.24 - where do i want to put it in general
+2272.0 - well wherever
+2275.359 - subtree first tells me to put it right
+2277.92 - subtree first is going to give me
+2279.839 - the successor these are all kind of
+2281.68 - parallel um
+2285.04 - we're in the case now where our node has
+2287.119 - a right child
+2288.8 - and then successor tells us where the
+2290.72 - successor is it is the first
+2293.04 - node which is the leftmost descendant in
+2296.16 - the
+2296.56 - right subtree of the node okay a lot of
+2299.68 - pointers to follow in that sentence but
+2302.56 - it's
+2302.96 - clear in the picture so this
+2306.079 - in this case we had node and there was
+2308.4 - no right child so we just added
+2310.8 - new to be its right child okay in the
+2314.16 - other case
+2315.92 - we had a right child so here is node
+2321.04 - there's uh there's this node here
+2323.599 - node.right
+2324.8 - which now we're supposing exists
+2329.04 - and it defines a whole subtree there's
+2331.04 - this one
+2332.96 - which is the first node in the traversal
+2336.72 - order of the subtree also known as the
+2338.32 - successor of node
+2340.0 - so i'll call this successor
+2344.24 - of node in the current traversal order
+2346.64 - but of course we'd like to make
+2348.079 - new the new successor of the node so
+2350.96 - where does it go
+2353.44 - here
+2356.88 - we want to add it as a left child
+2360.079 - to the old successor
+2363.599 - okay so put uh
+2368.56 - node as
+2380.32 - so take the successor and if you look at
+2382.16 - the code for successor we're in this
+2383.68 - case so we know it will just call
+2385.52 - subtree first of node.right and remember
+2388.96 - subtree first
+2390.0 - went left as much as it possibly could
+2392.72 - so what that means is this successor
+2394.4 - node is guaranteed to not
+2396.0 - have a left child right because it was
+2398.72 - defined by going right once and then
+2400.32 - going left as much as you could
+2402.4 - so there's no more left which means we
+2404.24 - can make one more left
+2405.76 - just add new there and we're done
+2409.2 - now if you look at the traversal order
+2411.04 - it will be node then new
+2412.72 - then the old successor and then the rest
+2414.4 - of that subtree
+2416.16 - okay it's kind of cool in all cases
+2419.359 - uh i mean this was constant time
+2422.64 - here we spent constant time after we
+2424.24 - called successor successor costs order h
+2426.88 - time
+2427.44 - so this is order h
+2434.24 - new new okay
+2438.56 - put new there
+2444.64 - clear okay that was insertion
+2447.68 - let's do deletion
+2454.4 - get the spec right and the example
+2470.319 - all of these are going to have two cases
+2472.64 - uh so let me
+2475.359 - oh i didn't update so now h is after a
+2479.2 - so it should be like this
+2480.48 - you can check the new traverse order of
+2482.0 - this tree is exactly that
+2486.16 - next i'm going to do a couple of
+2487.44 - deletions
+2489.2 - let's delete
+2493.119 - f first and then we're going to
+2498.72 - well this is
+2502.0 - confusing
+2507.599 - and then we're going to delete a so
+2511.359 - where's f we're supposing we're given a
+2513.04 - pointer to f this node
+2515.04 - well it's a leaf so if i want to delete
+2517.04 - it i just erase it
+2519.52 - easy leaves are easy to delete there's
+2522.8 - no work to do so what that means is i'm
+2525.2 - removing the pointer from d
+2526.56 - to f okay we just erase that guy
+2530.8 - uh okay now here's a trickier one
+2532.48 - suppose i want to delete the root of the
+2534.079 - tree this is kind of
+2535.04 - the hardest case but in general it would
+2537.599 - be somewhere in between leaf and root
+2540.24 - so if i want to delete a if i just
+2542.72 - erased it then suddenly there are these
+2544.319 - pointers to nowhere
+2545.599 - and i disconnect the tree into two parts
+2547.44 - i don't want to do that i need to keep
+2548.64 - my tree connected
+2550.4 - so i'm going to play this trick
+2554.079 - which is i forget if i use successor or
+2556.88 - predecessor
+2558.64 - predecessor
+2563.52 - so i'm going to uh look at a we already
+2567.52 - have defined successor and
+2569.119 - there by predecessor so i'm going to
+2571.52 - look at the predecessor of a
+2573.76 - which is e you can check that here the
+2577.359 - one before
+2578.0 - a is e this is in the left subtree
+2581.2 - uh find me the rightmost item keep going
+2583.44 - right until i can't that's e
+2585.68 - so now these guys are adjacent in the
+2587.2 - order and i'm about to remove a from the
+2589.04 - order
+2589.76 - so i can momentarily cheat and swap
+2592.64 - their labels
+2593.839 - i'm going to erase a and e here and put
+2596.48 - e
+2597.839 - after a why because it moves a
+2601.44 - down in the tree and if i get to the
+2603.52 - leaf i'm done
+2604.64 - so i'm not quite done because this is
+2605.92 - not a leaf so again i look at a's
+2607.76 - predecessor it's now
+2608.8 - g predecessor
+2611.839 - we hope is always in the uh
+2614.96 - farther down in the tree and then i swap
+2618.0 - a with g
+2622.24 - okay i have preserved the traversal
+2624.56 - order except where a
+2625.76 - falls just by moving a earlier in the
+2628.4 - order here
+2629.28 - and now a is a leaf and i can erase it
+2634.24 - okay so that's what we're going to
+2636.16 - follow now in actuality it's a little
+2638.16 - tricky sometimes we need to use
+2639.359 - predecessors sometimes we need to use
+2641.44 - successor okay so the cases are
+2645.599 - if the node is a leaf just
+2648.88 - detach it from the parent easy
+2653.92 - that's sort of our base case in the
+2655.28 - recursion otherwise
+2658.96 - there are two cases if
+2662.0 - so if we're not a leaf that means we
+2664.64 - have
+2665.2 - a left child or a right child or both
+2667.839 - both is going to be the easy case
+2669.44 - but in general i have either there's a
+2671.839 - left child
+2673.359 - or there's a right child in either case
+2676.4 - i'm going to be happy so i don't need a
+2678.079 - both case
+2680.8 - uh okay so what do i do in if i have a
+2684.079 - left child
+2685.119 - that guarantees to me that if the node's
+2687.92 - predecessor
+2688.64 - is inside that left sub-tree which means
+2690.64 - it's lower in the tree
+2692.64 - if i didn't have a left child the
+2694.079 - predecessor would actually be higher in
+2695.839 - the tree and i don't want to go higher
+2697.76 - okay so if i have a left child i know
+2699.839 - the predecessor is lower
+2701.44 - and so i'm going to swap
+2704.88 - my item the contents of my node
+2708.8 - with my predecessor's item
+2718.96 - and then i'm going to recursively delete
+2722.72 - the predecessor okay that's the case
+2732.72 - that we looked at in this code
+2734.24 - in this example because we always had a
+2735.92 - left child if we have a right child but
+2737.839 - no left child we just do the reverse we
+2739.599 - swap with our successors
+2741.28 - item and then delete the successor in
+2743.76 - either case we're going down
+2745.359 - and so if we start at some node like the
+2747.119 - route every time we do this operation
+2750.24 - we're walking down and then we're
+2752.8 - walking down
+2753.68 - and in general we'll keep walking down
+2755.359 - resuming where we left off which means
+2757.359 - total amount of time we spend is
+2759.2 - proportional to
+2760.56 - the height of the tree in the worst case
+2772.839 - question
+2775.52 - right so e didn't used to have a right
+2777.28 - child so we're changing identities of
+2778.88 - nodes when we do this
+2780.079 - because we uh this that we didn't
+2782.64 - actually move this
+2783.599 - circle the circle stayed in place and
+2785.28 - what we changed was the item that was
+2786.72 - stored in that circle
+2788.48 - so whether you call this node e or a
+2792.0 - it doesn't really matter it is just the
+2794.0 - root note
+2795.28 - okay so we're gonna play a lot of these
+2797.04 - tricks of moving the items around so far
+2798.8 - we hadn't been doing that we've just
+2799.839 - been creating
+2800.8 - nodes and placing them somewhere but now
+2804.0 - we're
+2804.56 - in this delete operation is the first
+2805.92 - time where we're changing what's stored
+2808.0 - in the nodes
+2809.119 - but we still can define the traversal
+2810.72 - order right the traverse order of this
+2812.079 - tree is dbgehc
+2815.359 - which should be what we get here if i
+2816.96 - delete f and
+2819.359 - a
+2822.8 - and sorry can f
+2831.76 - trees will not preserve connections
+2833.359 - that's just the name of the game we are
+2835.52 - we have to allow this otherwise we can't
+2837.04 - do anything that's the short
+2838.56 - version okay okay in the last few
+2842.16 - minutes let me talk about how we take
+2844.24 - these trees and implement a set
+2847.28 - or sequence okay i've already alluded to
+2850.079 - this
+2854.8 - so for a sequence
+2860.16 - we just make the traversal order
+2864.559 - equal to the the order that we're trying
+2868.24 - to represent
+2869.119 - the sequence order
+2873.44 - and if we're trying to source set items
+2875.359 - with keys we're going to make the
+2877.119 - traversal order
+2880.8 - equal to ordered by increasing key
+2884.839 - increasing item
+2888.319 - key
+2893.04 - some sense that's it but then we need to
+2895.28 - think about how do we implement
+2897.119 - all of these operations so maybe most
+2900.16 - enlightening is for starters is
+2903.44 - finding a key in a tree
+2907.52 - so this is going to correspond to binary
+2909.599 - search
+2911.52 - if i'm searching for a key let's say i'm
+2914.88 - searching for
+2916.0 - g's key and i know this
+2919.119 - may be hard in this example maybe i'll
+2921.2 - replace these all with numbers
+2923.68 - so i can think about key values
+2928.559 - okay so let's say 1 7
+2931.68 - 12 17
+2934.96 - 19 and 23.
+2938.319 - this is now in key order if you think of
+2941.119 - the traversal order
+2942.24 - the property is that all the keys in the
+2944.88 - left subtree of the root
+2946.4 - are less than the root and the root is
+2948.079 - less than all the keys in the right
+2949.44 - subtree and recursively all the way down
+2951.52 - this is something called the
+2954.96 - binary search tree property bst property
+2958.64 - these here we're calling them binary
+2961.76 - tree
+2962.8 - sets or set binary trees but they're
+2965.599 - also known in the literature as binary
+2967.28 - search trees term you may have heard
+2968.64 - before
+2969.28 - so this is a special case of what we're
+2970.8 - doing where we're storing the keys in
+2972.48 - order
+2973.359 - and then if i want to search for a key
+2974.96 - like uh 13
+2977.76 - i compare that key with the root i see
+2980.0 - oh it's not
+2980.96 - equal and it's to the left because it's
+2983.52 - less than
+2984.0 - 17. so 13 is left of here 13 is right of
+2987.76 - 7
+2988.48 - 13 is right of 12 and so i know that
+2991.599 - this is where 13 would belong
+2994.319 - but there's no right child there and so
+2995.76 - i know in find i just returned nothing
+2998.559 - if i was doing find previous i would
+3001.359 - return this note
+3003.44 - because i have tried to go to the right
+3005.76 - the last time before i fell off the tree
+3008.16 - i was trying to go to the right and
+3009.599 - therefore that last note i had was the
+3012.0 - previous item if i was trying to define
+3013.76 - next what would i do i would just take
+3015.68 - this node and compute its successor
+3018.16 - which we already know how to do and that
+3020.0 - happens to be the root
+3021.68 - okay so now i can do these inexact
+3024.0 - searches when i do find previous and
+3025.52 - find next
+3026.72 - when i fall off the tree i find either
+3028.48 - the previous or the next
+3029.839 - and then with predecessor or successor i
+3031.52 - can find the other one
+3032.96 - okay so that's how we can do find and
+3036.079 - find previous
+3038.0 - and find next to do
+3042.8 - uh sequences we need a little bit more
+3046.16 - work
+3047.119 - we'll do that next time
+3057.76 - you

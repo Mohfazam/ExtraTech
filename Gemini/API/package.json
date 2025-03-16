@@ -10,9 +10,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.0",
     "@tailwindcss/vite": "^4.0.14",
+    "install": "^0.13.0",
+    "pip": "^0.0.1",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "youtube-transcript": "^1.2.1",
+    "youtube-transcript-api": "^1.1.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.21.0",

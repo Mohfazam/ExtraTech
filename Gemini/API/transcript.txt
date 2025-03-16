@@ -1,0 +1,751 @@
+0.24 - hello everybody and welcome to another c
+2.48 - plus plus tutorial for beginners
+4.88 - now in this video i'm going to be
+6.399 - discussing arrays now an array is a way
+8.88 - to store multiple elements in the same
+11.2 - variable or in the same kind of
+12.88 - container or memory location
+15.04 - they are extremely important and well
+16.64 - you will learn more about them in this
+18.08 - video so let's
+19.119 - dive in
+22.78 - [Music]
+28.48 - so the first thing i want to say as we
+29.92 - get into this video is that a list is
+32.079 - not the same as an array so if you're
+33.84 - coming from another programming language
+35.68 - and you've used lists before really
+37.76 - you've used anything that has the dot
+39.44 - append method on it or dot push method
+41.52 - or something like that
+42.64 - please make sure you are not mixing up
+44.239 - what you know previously from other
+45.76 - programming languages with what i'm
+47.28 - going to show you right here
+48.399 - which is an array now they are very
+50.16 - similar a list in an array but they also
+52.16 - have some very important differences and
+53.76 - i just want to make sure that's very
+55.039 - clear
+55.6 - now if you've never programmed before or
+57.28 - you've i guess never gotten this far in
+59.28 - programming for this is your first
+60.64 - series that you're following along with
+62.239 - you've never heard of an array or a list
+63.84 - before don't worry i will explain them
+65.84 - to you here
+66.72 - and you can kind of ignore what i just
+68.08 - said but just for anyone coming from
+69.36 - another language
+70.24 - please make sure you really pay
+71.28 - attention here because an array is
+72.88 - different
+73.36 - from a list so anyways what is an array
+76.799 - well an array is really a data structure
+79.04 - and that's a really a fancy word of
+81.04 - something that allows us to store
+82.64 - multiple values that
+84.32 - allows us to store multiple values
+86.24 - that's what an array does
+87.84 - so rather than having to define say five
+90.159 - different variables if we wanted to
+91.52 - store five numbers
+92.799 - we can actually define an array and this
+94.88 - array can store all of those five
+96.4 - numbers for us
+97.759 - so an array kind of looks like this it's
+99.92 - squiggly brackets
+101.28 - at least in c plus and other programming
+103.2 - languages it's square brackets
+105.28 - and inside of these squiggly brackets
+107.36 - you have a series of elements
+109.2 - now an element is really just a value of
+112.079 - some data type
+113.28 - so it could be an int it could be a
+114.479 - float it could be a bool it could be a
+115.84 - string it could be a char
+117.2 - but in an array all of your elements all
+119.6 - of the things inside of them are going
+120.96 - to be of the same types they're all
+122.64 - going to be int
+123.52 - they're all going to be float all going
+124.88 - to be bool whatever it may be
+126.64 - but here's an example of a really
+128.08 - straightforward array we have 1 2 3 as
+131.039 - the elements of our array
+133.04 - so what this allows us to do is store
+135.2 - these three numbers
+136.319 - in the order that we have them in so we
+138.0 - can maintain that 1 comes before 2
+140.239 - 2 comes before 3 and all of that and
+142.319 - then what we can actually do here with
+143.76 - this array
+144.48 - and i'll show you how we do all this
+145.76 - obviously is we can access each of these
+148.319 - individual values or each of these
+150.16 - individual elements
+151.28 - so let's say i want to change this value
+153.2 - right here i can fully do that that's
+155.36 - totally fine
+156.08 - i can also change all of the values in
+157.68 - the array the one thing that i cannot do
+160.16 - though
+160.56 - is once i define an array i cannot
+162.879 - change the number of elements that are
+164.56 - inside of it
+165.599 - so i'm going to show you all this i know
+167.04 - this is i'm getting a little bit ahead
+168.239 - of myself here
+169.12 - but whenever you create an array you
+171.44 - need to decide
+172.319 - the size of the array that you are going
+174.239 - to create and once you define that size
+176.8 - once you say this array is going to have
+178.319 - four elements five elements 27 elements
+180.64 - whatever it may be
+181.599 - you cannot change that size if you
+184.319 - wanted to say increase the size of the
+186.159 - array
+186.72 - what you would actually need to do is
+188.08 - make a new array and you would need to
+189.76 - copy the values from your previous array
+192.56 - into the new array that then has a
+194.159 - larger or smaller size depending on what
+196.0 - you're doing
+196.8 - anyways hopefully this isn't confusing
+198.319 - you too bad i'm just giving you a high
+199.76 - level overview before we jump in here
+201.76 - i want to show you now how we create an
+203.36 - array so the first thing we need to do
+205.599 - when we are
+206.239 - defining an array is we need to pick
+208.319 - what type the array is going to store
+210.72 - so this is a little bit confusing
+212.159 - because an array itself is a data type
+214.319 - like an array
+215.12 - is a valid data type but inside of an
+217.76 - array
+218.159 - we have elements in those elements of
+219.84 - our a type so we need to pick what type
+222.08 - this array is going to be
+223.36 - in this case i'm going to say int so
+225.2 - just like you would declare any other
+226.56 - variable
+227.2 - you just define the type of it so in
+229.28 - this case it's going to be int
+230.64 - then the name of it and then when you
+232.319 - want to make this an array data type
+234.72 - you put two square brackets after the
+237.04 - name of the variable
+238.56 - so in this case i have int arr standing
+241.2 - for array
+242.0 - and then two square brackets and then i
+243.92 - can do an equal sign and i'll kind of
+245.2 - code out the rest of this in a second
+247.2 - so this is saying we're defining an
+248.56 - array this array is going to store
+250.239 - ins now if i change this to char what
+252.879 - i've done is define
+253.76 - a char array this is because i have char
+255.92 - here this is an array and so this array
+257.68 - is going to store characters
+259.359 - if i change this to string same thing
+261.68 - this is now a string array
+263.44 - so let's make it ins because this is the
+264.96 - most straightforward and now what i need
+266.88 - to do is inside of these square brackets
+269.199 - i need to define the size of my array so
+272.0 - i need to pick
+272.88 - in one way or another i'll show you the
+274.24 - other ways we can do this how large my
+276.32 - array is going to be
+277.52 - is it going to have 10 elements 5
+279.12 - elements 4 elements how many is going to
+280.72 - be inside of it
+281.759 - so in this case i'll just say five you
+284.0 - need to decide for yourself
+285.36 - and note that once you decide this you
+287.28 - cannot change it later on
+288.96 - it's not a huge deal there's ways around
+290.479 - this that i'll show you in later videos
+291.919 - but just want to be very clear you
+293.28 - cannot increase or decrease the size of
+295.12 - an array
+296.0 - now it's also worth noting that if i had
+297.919 - say some value here
+299.52 - like in x equals 5 i could fully put x
+302.24 - inside of here and that would mean that
+303.84 - my array is now going to be size 5
+305.36 - because the variable x
+306.4 - stores the value 5. that is totally
+308.88 - valid to do
+309.919 - and you'll notice like if you kind of
+311.52 - experiment with stuff like this you can
+312.88 - do all kinds of things that you might
+314.08 - not expect
+314.8 - especially if you've never programmed
+316.08 - before i could even do something like
+318.16 - array and then you know x plus 1 and
+320.0 - this now is going to be size 6.
+321.68 - so anyways i'll leave x in there just
+323.12 - for example purposes and then after we
+325.44 - do this we have two
+326.56 - options here we can just declare the
+328.479 - array like this we can say okay we're
+329.919 - going to initialize what's known as an
+331.68 - empty array or an array that just
+333.84 - doesn't really have any defined values
+335.84 - in it yet
+336.56 - that is of a size 5. or what we can do
+339.6 - is we can actually pick the elements
+341.199 - that we want to go inside of this array
+343.039 - so if we decide to not pick then we can
+344.639 - just do this and we've now declared an
+346.639 - array
+347.039 - we've told the compiler hey allocate
+348.96 - some room in our computer's memory
+350.56 - to store these different elements or we
+353.12 - can actually define the elements inside
+354.8 - by putting these two scroll
+356.24 - squiggly brackets and then defining the
+358.16 - different elements that we have
+359.759 - so in this case i've created an array of
+361.6 - size five and it has the elements one
+363.28 - two three
+364.08 - four five now if i tried to do something
+366.639 - like 6
+367.44 - this would be an error the reason this
+369.12 - would be an error is because
+370.479 - we cannot change the size of this array
+372.88 - which we've already defined to be size
+374.479 - 5. by adding this element 6 here that
+376.639 - just it doesn't make sense we can't have
+378.24 - 6 elements
+379.12 - in an array that's only supposed to have
+381.039 - five so this is how you define an array
+383.52 - we've now created an array
+385.199 - now it's also worth noting that when you
+387.199 - define an array in this way and you
+388.639 - actually pick the elements that are
+389.919 - going to be inside of it
+391.039 - you do not need to explicitly desi
+393.52 - defined sorry the size of the array
+395.6 - so right here i've kind of gone a little
+396.96 - bit overkill i've said all right the
+398.479 - size of the array is five
+400.08 - and then i've defined an array that has
+401.919 - five elements but c plus plus is
+403.84 - actually smart enough to know
+405.28 - that if you just leave the square
+406.639 - brackets like this and you don't
+407.84 - actually put a size inside of here
+410.24 - but you do actually declare the elements
+412.88 - in your array
+413.759 - it's able to just count how many
+415.12 - elements are here and automatically
+416.8 - create an array of that size so now i
+418.8 - can do any number of elements that i
+420.24 - want
+420.639 - and c plus plus will what's called i
+422.8 - believe infer
+424.08 - the size it's either imply or for i i
+426.479 - always forget which the meaning of those
+427.84 - are
+428.24 - uh but i believe it will infer the size
+430.24 - of this array by
+431.52 - looking at the size that you've defined
+433.759 - right here so we'll just make this array
+435.36 - size 6. now there's one more kind of
+437.599 - sneaky notation here that c plus plus
+439.36 - has
+439.759 - you actually don't need the equal sign
+441.599 - you can write it just like this
+443.36 - i don't know exactly why c plus plus has
+445.28 - this but this is the exact same thing as
+447.039 - having the equal sign
+448.08 - in so just figured i'd show that to you
+450.24 - like these are completely equivalent
+451.599 - having the equal sign or not having the
+453.039 - equal sign
+453.759 - now there's a lot of rules here i
+454.88 - apologize we'll get into some more
+456.16 - interesting stuff
+456.88 - in a second but if you decide to not
+459.28 - actually uh define the elements in the
+461.28 - array
+461.84 - then it is required that you add the
+463.919 - size of the array i cannot just do this
+466.08 - this is invalid
+467.199 - i do need to tell c plus and c plus plus
+469.599 - in one way or another what the size of
+470.96 - the array is going to be
+472.0 - so if i say int r a r r and then of size
+475.199 - x
+475.52 - and we just do this so it makes it equal
+476.8 - to 2 3 4 5 and 6.
+479.919 - what i can do now is show you how we can
+481.44 - actually access elements
+482.96 - in this array first of all though let me
+485.28 - actually show you what happens when we
+486.8 - just print out arr so c
+488.639 - out arr let's go here to the compiler
+491.84 - let's
+492.56 - compile and let's run and notice we get
+495.28 - some random gibberish
+496.72 - showing right here so why is this the
+498.879 - case well this array right here
+501.599 - what this really is is this is a
+503.599 - location in our computer's memory
+505.52 - in our computer's ram right so whenever
+507.919 - you run a program
+508.879 - like this like c plus plus program your
+511.36 - program is loaded into your computer's
+513.12 - memory
+513.68 - and when you define an array what
+515.44 - happens is you're saying okay
+517.039 - i want somewhere in my computer's memory
+519.12 - these elements to be stored or i want to
+520.959 - allocate space
+522.24 - for this array so when you just print
+524.08 - out arr like this
+525.519 - what it's actually giving you here is
+527.519 - the memory location
+529.279 - of this array now this doesn't really
+531.279 - have to mean anything to you
+532.72 - but this is kind of where in your
+534.48 - computer's memory this array is actually
+536.56 - stored
+537.279 - so you can't actually just print out
+539.839 - like all of the elements in the array as
+541.44 - you might expect at least
+542.64 - not in this way so if you want to access
+545.04 - specific elements from the array i'm
+546.8 - going to show you how we can do that
+548.32 - so obviously it makes sense that we have
+549.76 - these five values here we want to be
+551.36 - able to access each of them i want to do
+553.2 - something with the elements in this
+554.64 - array
+555.279 - so there's something called positions or
+557.279 - indices of elements in our array
+560.0 - now the indices or indexes start as
+562.8 - following
+563.36 - we have index 0 which is the first
+565.68 - element in our array
+566.88 - so if i want to access the very first
+568.72 - element in my array
+569.92 - what i actually do is i write the name
+571.519 - of my array i write my square brackets
+574.0 - and then i write the position or the
+576.08 - index of the element i would like to
+577.76 - access
+578.56 - in this case element zero what this says
+580.8 - is give me the first
+582.64 - element that is in the array i know it
+584.399 - seems counterintuitive but computers
+585.839 - kind of always start counting at zero
+587.76 - so we would get element two here when we
+589.92 - use index zero
+591.279 - then the second element is going to be
+592.8 - index one
+594.32 - the third element's gonna be index two
+596.88 - fourth
+597.36 - three fifth four and then i guess
+600.64 - six would be five although we cannot use
+603.04 - an index five here because
+604.959 - we're trying to access an element that
+606.72 - does not exist right
+608.0 - if i try to access position five that's
+610.399 - trying to get the sixth element in this
+612.32 - array
+612.8 - this array only has five elements in it
+615.12 - and so this is gonna lead to some kind
+616.56 - of strange behavior
+618.16 - which i will show you later on so we
+619.839 - will continue in one second but i need
+621.36 - to quickly thank the sponsor of this
+622.88 - video and this series which is alco
+624.88 - expert
+625.519 - algo expert is the best platform to use
+627.36 - from preparing for your software
+628.56 - engineering coding
+629.6 - interviews they have the highest quality
+631.12 - coding interview practice questions with
+632.8 - over 140 of them
+634.079 - on the platform with that said check out
+636.079 - algo expert from the link in the
+637.279 - description and use the code tech with
+638.72 - tim for a discount on the platform
+641.12 - anyways let me just show you here when i
+642.48 - do array and then at index 0
+644.72 - this is going to access for me the first
+647.76 - element which is 2. so it actually gives
+649.519 - me this element 2
+650.64 - like that all right so let's uh change
+653.36 - this now to just be
+654.399 - say position 2 or index 2. now a little
+657.36 - quiz for you which
+658.399 - element is this going to print out when
+660.0 - i run this program
+662.16 - give it a guess okay so let's compile
+665.2 - let's run and we get four the reason we
+668.0 - get four
+668.72 - is because we're accessing the second
+670.48 - position which really is the third
+672.32 - element
+672.959 - in the array now a little bit of a trick
+675.2 - here if you want to access the last
+677.04 - element in the array
+678.24 - this is always the size of the array
+680.48 - minus one
+681.44 - index so if your array has size five
+684.64 - the last index in the array is always
+686.56 - that size minus one which in this case
+688.399 - would be
+688.959 - four so that's how you access the
+690.64 - different elements that are inside of
+692.32 - the array
+693.12 - now if you want to change elements in an
+694.959 - array you can do this as well
+696.64 - so i can access say the very first
+699.12 - element
+699.76 - and i can change this to be say 10. so
+702.56 - now what happens after i add my
+704.0 - semicolon here
+704.959 - is i say all right array at position 0
+707.2 - or at index 0
+708.399 - i want to change this to be the value
+710.24 - 10. so now if i print out array at
+712.399 - index 0 you're going to see as it would
+714.88 - make sense
+715.68 - that this now is going to be well value
+718.88 - 10. so that's how you access and i guess
+721.44 - change the elements in
+722.959 - an array awesome now let me show you
+725.36 - what happens when we define
+726.959 - an array but we do not give it the
+728.959 - unique elements right so if i just
+730.399 - define an array and i say this is of
+732.399 - size 5 what happens now when i print out
+735.839 - the different indices
+737.04 - of this array so if i say c out array 0
+740.24 - and then i'm just going to
+741.04 - kind of copy this down here this isn't
+742.959 - the best way to do this but for now this
+744.48 - makes sense
+745.2 - let's print out all the different
+746.48 - indices and let's do our kind of
+748.8 - end l at the end of all these probably
+751.92 - should have done that beforehand but
+754.24 - it's okay so end l and
+757.44 - l okay so what do you think is going to
+759.12 - print out just give it a guess you
+760.72 - probably will have no idea but let's
+762.56 - compile the program and let's see what
+764.32 - we get
+764.959 - again notice we didn't give the array
+766.72 - its elements already we just initialized
+768.399 - that we have an array of size
+769.6 - five so compile and run and notice we
+772.079 - get some completely random values
+774.079 - printing out here
+775.2 - so this is kind of what happens in c
+776.639 - plus plus when you do not define what is
+778.639 - being stored in
+779.92 - let's just call it a container or in a
+782.0 - memory location
+783.2 - you're just going to get a bunch of
+784.079 - random gibberish you have no idea what's
+785.92 - going to be printing out
+787.519 - there's no way for me to tell you why
+789.2 - exactly we got these values
+790.959 - it's just because at this point in time
+792.48 - this is what is stored at
+794.24 - this location that we're trying to
+795.519 - access in our computer's memory
+797.279 - you don't really have to understand this
+798.88 - the whole point is to realize that if
+800.399 - you do not initialize the values of the
+802.399 - array
+802.88 - you have no idea what is going to be
+804.24 - stored in it so just keep that in mind
+806.24 - right
+806.72 - now even same thing here let's see what
+808.8 - happens when i try to access a position
+810.8 - in the array
+811.6 - that actually doesn't exist so i try to
+813.279 - access say position seven
+814.88 - obviously our array is only size five so
+816.56 - there is no index seven
+818.48 - when i try to do this let's see what
+820.399 - happens let's compile let's run again we
+822.639 - get some random value i can't tell you
+824.48 - why we're getting that
+825.519 - all i can tell you is that when you try
+827.279 - to do this you get something completely
+828.959 - unexpected that you cannot predict
+831.199 - so hopefully that's somewhat clear that
+832.639 - is how you access the elements that is
+834.24 - how you change the elements
+835.519 - and that is what happens when you kind
+837.279 - of create an array but you do not give
+839.279 - it the actual values inside of it
+841.519 - now of course once we've defined the
+843.36 - array like this what i can do is i can
+845.36 - say well ar
+847.199 - is equal to and then i can set it equal
+849.12 - to whatever array that i want
+850.8 - that has five elements inside of it so i
+852.56 - could say one two
+854.16 - oops let's get our commas right two
+855.92 - three four five
+857.76 - and then if i see out here arr at and
+860.399 - let's just go index
+861.44 - four let's see what happens so let's
+863.92 - compile
+865.36 - and oh what is it saying right here uh
+867.76 - error assigning to an array from an
+869.44 - initializer list
+871.04 - okay so it's actually a good error to
+872.56 - run into this is something that i didn't
+874.32 - see when i was looking at arrays before
+875.92 - doing this video
+876.8 - so apparently you actually cannot do
+878.399 - what i just tried to tell you that you
+879.92 - could do
+880.88 - what this is saying is that you cannot
+882.24 - assign to an array from an initializer
+884.56 - list so this is what you call an
+885.68 - initializer list
+887.12 - don't worry about all the fancy names
+888.72 - and it's saying that since we've already
+890.56 - declared this array
+892.24 - we've said that we have this array i now
+894.32 - cannot set the array equal to
+896.72 - and then this kind of array right here i
+899.04 - cannot do that it's not allowed in c
+900.72 - plus plus so if i did this right define
+903.04 - the array in this way and then i want to
+904.56 - set all of its elements the way that i
+906.32 - would have to do it is by looking at
+907.92 - each of the specific
+909.04 - indexes so if i want to set my array
+912.079 - to have say one two three four five as
+914.56 - its different elements
+915.519 - i would actually have to do the
+916.639 - following i would have to say array zero
+918.72 - is equal to one and then array one
+921.92 - is equal to two and then so on and so
+923.92 - forth i'm not gonna do all of them but
+925.92 - i'll show you now that we will get
+927.36 - element one when i actually kind of
+929.199 - declare or set the elements in this way
+931.839 - so
+932.16 - let's compile let's run and see we do
+936.079 - get
+936.56 - one now obviously uh this is not this
+939.6 - doesn't make too much sense to do it
+940.8 - this way right like this is no better
+942.16 - than just declaring a bunch of different
+943.44 - variables we still have to write all of
+944.88 - this code
+945.6 - to set all of the elements for our ray
+948.0 - now i'm going to show you in the next
+949.12 - video kind of some
+950.32 - tricks to do this a lot faster right now
+952.16 - we just don't have all the tools that we
+953.92 - need
+954.32 - to really make perfect use of an array
+956.399 - but i wanted to show them to you before
+958.32 - because then when i go into the next
+959.759 - videos you'll see why the things that
+961.519 - i'm showing you are like really
+962.56 - important if that makes any sense
+964.079 - but anyways that's kind of the idea
+965.44 - behind an array so there's a few more
+966.88 - things i'm going to show you with an
+968.079 - array
+968.88 - and the first thing that i want to do
+970.399 - here is just actually define a new array
+972.88 - so let's make this 4
+973.92 - 5 4 5 6 7. let's also make an array
+978.32 - that's like a string array so let's say
+979.759 - string
+980.32 - arr2 and then this can be equal to or we
+984.16 - can do it in this notation we can say
+985.92 - tim
+987.04 - and then comma is and then great
+990.88 - just to show you that we can have an
+991.839 - array like this we also could have an
+994.0 - array that has float values
+995.519 - so float er 3 equals
+998.56 - or we could just do it this way as well
+1000.56 - 1.1
+1001.68 - 1.2 maybe negative 0.9
+1004.72 - whatever it may be you can define arrays
+1006.24 - in this way okay so sorry for the abrupt
+1008.48 - cut i forget what i said before i made
+1010.079 - the cut here so i'm just going to
+1010.959 - quickly say yes
+1011.759 - we can define arrays of all different
+1013.519 - types you can see examples here that
+1015.199 - i've written
+1016.0 - anyways what i want to show you now is
+1017.44 - how you get the size of an array
+1019.44 - if you're coming from another
+1020.639 - programming language you may think this
+1022.48 - is very trivial very easy to do in a lot
+1024.16 - of programming languages you can use
+1025.679 - something called dot size
+1027.439 - or dot length to actually get the size
+1029.6 - or the length of the array the way that
+1031.199 - you do this is you would write the name
+1032.48 - of the array in this case maybe
+1033.919 - arr or ar2 or air r3 then you just do
+1036.959 - dot size or dot
+1038.079 - length or sometimes there's a function
+1040.0 - say in python you have this function
+1041.52 - called len
+1042.319 - that gives you the length of whatever
+1044.079 - structure you pass to
+1045.439 - now in c suppose is not so easy c plus
+1047.6 - plus makes things a little bit more
+1049.12 - difficult
+1049.84 - now to get the size of an array is kind
+1053.039 - of a two-step process
+1054.799 - there is this function in c plus plus
+1056.799 - called size up
+1057.84 - now notice it's kind of highlighting a
+1059.2 - fancy color when i write it now what
+1061.2 - sizeof does
+1062.32 - is give you the size in bytes of an
+1065.039 - array
+1065.76 - now bytes when i say bytes this is like
+1068.16 - how much
+1068.799 - room on your computer this array is
+1070.88 - actually taking up it's not the number
+1072.32 - of elements in the array it is quite
+1074.08 - literally the size of this array
+1076.0 - in memory like how many bytes are being
+1078.16 - used
+1079.039 - now the only good thing about this
+1080.559 - though is that if we know the size of
+1082.72 - the array in total we know the number of
+1084.4 - bytes that are being used
+1086.0 - if we're able to figure out how many
+1087.76 - bytes are being used for
+1089.12 - one element in the array we can actually
+1091.36 - figure out how many elements are in the
+1093.12 - array
+1093.679 - so typically when you want to get the
+1095.2 - size or the length of an array
+1096.799 - you're asking for the number of elements
+1098.4 - in the array that's what you want to
+1099.52 - know
+1100.16 - so in c plus plus if you want to get
+1101.76 - this what you can do is you can say
+1103.6 - something like co
+1104.72 - and then size of and then you can say
+1106.96 - arr so this is actually the array right
+1109.52 - the array object
+1110.88 - and then you can divide this by the size
+1114.08 - of
+1114.799 - one of the elements in the array so if
+1116.96 - you know the array has at least one
+1118.4 - element
+1119.12 - you can say all right well the size of
+1120.799 - array divided by the size of array
+1123.6 - and then this is going to be at index 0.
+1126.559 - so this tells you the size of the very
+1128.4 - first
+1128.799 - element and the size of the first
+1130.64 - element is how much
+1132.24 - all of the other elements take up as
+1133.76 - well so all of the other elements will
+1135.28 - have the exact same amount of space or
+1137.36 - exact same number of bytes that are
+1138.96 - being used by them
+1140.4 - so by simply dividing the size of the
+1142.16 - entire array by one of the elements
+1144.559 - this tells you how many elements are in
+1146.96 - the array now there's a few other ways
+1148.48 - to determine the size as well but
+1149.76 - they're a little bit beyond the scope of
+1151.2 - this
+1151.679 - tutorial right here i don't want to get
+1152.96 - into anything too confusing so i'm not
+1154.96 - going to cover them
+1156.16 - but let's quickly just run this here and
+1158.4 - see what we get and we get
+1159.919 - 4 right so the reason we get 4 is
+1161.52 - because the size of this one element is
+1164.0 - something the size of this entire array
+1165.919 - is something we do the division and
+1167.2 - since the size of all the elements is
+1168.64 - the exact same
+1169.679 - we know we have four elements just some
+1171.919 - basic math now let's just see out
+1173.919 - actually the size of just the array so
+1176.4 - we can kind of see what's happening here
+1177.919 - and let's see out the size of the array
+1179.84 - at
+1180.16 - index or position zero so let's go here
+1183.36 - let's compile let's run and oops i
+1186.559 - didn't mean to i didn't want to do them
+1188.08 - beside each other let's do this again
+1189.28 - okay
+1190.08 - and l and
+1193.52 - and l okay let's try this now clear
+1197.2 - compile run we get 16 4 and then
+1200.96 - four so this is perfect this is exactly
+1202.48 - what we wanted this is telling us
+1204.159 - that the size of our right is 16 number
+1207.2 - of bytes that it's using
+1208.799 - the number of bytes that one element is
+1210.559 - using is four
+1212.24 - and so we have four elements in the
+1214.159 - array now let's just see what happens if
+1215.919 - we add a very large number
+1218.0 - as the first element in our array let's
+1219.84 - see if this still works
+1221.52 - i want to compile and run and notice we
+1225.36 - still get
+1225.919 - the exact same thing so it uses four
+1227.6 - bytes to represent an integer
+1229.6 - so hopefully that kind of makes sense i
+1230.96 - can understand this part might be a
+1232.159 - little bit confusing especially if
+1233.36 - you've never programmed before
+1234.799 - again size and bytes you want to figure
+1236.64 - out the number of elements you take the
+1238.159 - size
+1238.64 - in bytes of the array and then divide it
+1240.72 - by the size in bytes of
+1242.48 - any number or any element story of the
+1244.48 - array that tells you the number of
+1245.919 - elements that are in it
+1247.44 - so i think that's all i really wanted to
+1249.52 - show you for
+1250.64 - arrays again just keep in mind there's
+1252.559 - many different ways to define and
+1254.08 - declare them
+1254.96 - whenever you create an array you cannot
+1256.64 - change the size of that array i cannot
+1258.96 - add another element into this array i
+1260.48 - would need to create a new one
+1262.48 - um you can change the value of positions
+1265.6 - in the array
+1266.32 - and arrays start indexing at zero so the
+1268.559 - very first element is zero
+1270.0 - then one then two then three again the
+1272.48 - trick is the number of elements in the
+1274.0 - array
+1274.48 - minus one is the very last index or
+1276.64 - position that you can access in
+1278.64 - the array so hopefully this was
+1280.159 - informative hopefully you guys learned
+1281.36 - something from this if you did make sure
+1282.64 - you may like
+1283.28 - subscribe to the channel and i will see
+1284.72 - you in another youtube video
+1294.4 - you
