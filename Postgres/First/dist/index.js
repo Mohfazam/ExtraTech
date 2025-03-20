@@ -22,7 +22,7 @@ const pgClient = new pg_1.Client("postgresql://neondb_owner:npg_RTzw5X1mglJV@ep-
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         yield pgClient.connect();
-        const response = yield pgClient.query("SELECT * FROM users;");
+        const response = yield pgClient.query(`SELECT * FROM users `);
         console.log(response.rows);
     });
 }
