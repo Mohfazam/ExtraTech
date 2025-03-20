@@ -182,6 +182,89 @@ app.post('/coding-challenge', async (req, res) => {
     }
   });
 
+  // server.js - Add this route
+// Update only the /generate-problem route
+app.post('/generate-problem', async (req, res) => {
+    try {
+      const { videoId } = req.body;
+      if (!videoId) return res.status(400).json({ error: 'Missing video ID' });
+  
+      // Replace fetchTranscript with direct YouTubeTranscript call
+      const transcriptData = await YoutubeTranscript.fetchTranscript(videoId);
+      const transcript = transcriptData.map(item => item.text).join(' ');
+  
+      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+  
+      // Keep the rest of the code exactly the same
+      const prompt = `
+      Generate a coding problem based on this video content:
+      ${transcript}
+      
+      Requirements:
+      1. Medium difficulty level
+      2. Clear problem statement with example
+      3. Starter code for JavaScript, Python
+      4. 3 test cases (2 visible, 1 hidden)
+      5. Focus on presentable structure
+      6. Include hints and learning resources
+      
+      Format response as JSON:
+      {
+        "problem": {
+          "title": "Array Transformation",
+          "description": "Transform the array according to specific rules...",
+          "difficulty": "Medium",
+          "example": {
+            "input": "[1, 2, 2, 3]",
+            "output": "[1, 2, 3]",
+            "explanation": "Remove duplicates and sort..."
+          },
+          "starterCode": {
+            "javascript": "function transformArray(arr) {...}",
+            "python": "def transform_array(arr): ..."
+          },
+          "testCases": [
+            {"input": "[5,4,3,3]", "output": "[3,4,5]", "hidden": false},
+            {"input": "[7,1,7,2]", "output": "[1,2,7]", "hidden: false},
+            {"input": "[9,9,9]", "output": "[9]", "hidden": true}
+          ],
+          "hints": [
+            "Consider using built-in data structures",
+            "Think about time complexity optimization"
+          ],
+          "learningResources": [
+            {
+              "title": "Array Methods Guide",
+              "url": "https://example.com/array-methods"
+            }
+          ],
+          "tags": ["arrays", "sorting", "optimization"]
+        }
+      }`;
+  
+      const response = await model.generateContent(prompt);
+      const content = response.response.text();
+      const cleaned = content.replace(/```json/g, '').replace(/```/g, '').trim();
+      
+      // Basic validation
+      if (!cleaned) throw new Error('Empty response from AI');
+      const data = JSON.parse(cleaned);
+      
+      if (!data.problem || !data.problem.title || !data.problem.description) {
+        throw new Error('Invalid problem structure');
+      }
+  
+      res.json(data.problem);
+  
+    } catch (error) {
+      console.error('Problem Generation Error:', error);
+      res.status(500).json({
+        error: error.message,
+        details: 'Problem generation failed. Try refreshing or another video.'
+      });
+    }
+  });
+
 app.listen(3000, () => {
   console.log(`Server started at port 3000`);
 });
