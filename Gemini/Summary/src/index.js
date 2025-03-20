@@ -71,6 +71,7 @@ app.get("/test", (req, res) => {
     res.status(200).json({ message: "Server is running correctly" });
 });
 
-app.listen(3000, () => {
-    console.log("Server started at port 3000");
+const port = process.env.PORT || 3000; // Use Render's PORT variable
+app.listen(port, () => {
+  console.log(`Server started at port ${port}`);
 });
