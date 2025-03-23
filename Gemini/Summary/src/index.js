@@ -182,8 +182,6 @@ app.post('/coding-challenge', async (req, res) => {
     }
   });
 
-  // server.js - Add this route
-// Update only the /generate-problem route
 app.post('/generate-problem', async (req, res) => {
     try {
       const { videoId } = req.body;
@@ -261,6 +259,87 @@ app.post('/generate-problem', async (req, res) => {
       res.status(500).json({
         error: error.message,
         details: 'Problem generation failed. Try refreshing or another video.'
+      });
+    }
+  });
+
+  app.post('/generate-quiz', async (req, res) => {
+    try {
+      const { videoId } = req.body;
+      if (!videoId) return res.status(400).json({ error: 'Missing video ID' });
+  
+      const transcriptData = await YoutubeTranscript.fetchTranscript(videoId);
+      const transcriptText = transcriptData.map(item => item.text).join(' ');
+      
+      const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+      
+      const prompt = `
+      Generate a comprehensive quiz based on this video content:
+      ${transcriptText}
+      
+      Requirements:
+      1. Create 30 questions (10 easy, 10 medium, 10 hard)
+      2. Each question must have:
+         - 4 options
+         - Correct answer index (0-3)
+         - Detailed explanation
+      3. Follow this exact JSON format:
+      {
+        "easy": [
+          {
+            "question": "What is the index of the first element in an array?",
+            "options": ["0", "1", "-1", "Depends on the array"],
+            "correct": 0,
+            "explanation": "In most programming languages, array indices start at 0."
+          }
+        ],
+        "medium": [...],
+        "hard": [...]
+      }
+      
+      4. Questions should cover:
+         - Fundamental concepts
+         - Practical applications
+         - Edge cases
+         - Performance considerations
+      5. Avoid duplicate questions
+      6. Ensure progressive difficulty levels
+      `;
+  
+      const result = await model.generateContent(prompt);
+      const content = result.response.text();
+      
+      // Clean and validate response
+      const cleaned = content.replace(/```json/g, '').replace(/```/g, '').trim();
+      if (!cleaned) throw new Error('Empty response from AI');
+      
+      const data = JSON.parse(cleaned);
+      
+      // Validate structure
+      const validateQuizData = (quizData) => {
+        const difficulties = ['easy', 'medium', 'hard'];
+        for (const diff of difficulties) {
+          if (!quizData[diff] || !Array.isArray(quizData[diff])) {
+            throw new Error(`Missing ${diff} questions`);
+          }
+          quizData[diff].forEach(q => {
+            if (!q.question || !q.options || q.options.length !== 4 || 
+                typeof q.correct !== 'number' || !q.explanation) {
+              throw new Error(`Invalid question format in ${diff}`);
+            }
+          });
+        }
+      };
+      
+      validateQuizData(data);
+      
+      res.json(data);
+  
+    } catch (error) {
+      console.error('Quiz Generation Error:', error);
+      res.status(500).json({
+        error: error.message,
+        details: 'Failed to generate quiz. Try a different video or check transcript availability.'
       });
     }
   });

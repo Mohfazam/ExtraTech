@@ -8,22 +8,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const pg_1 = require("pg");
+const express_1 = __importDefault(require("express"));
+const app = (0, express_1.default)();
+app.use(express_1.default.json());
 const pgClient = new pg_1.Client("postgresql://neondb_owner:npg_RTzw5X1mglJV@ep-calm-fire-a1l4vgj7-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require");
-// const pgClient = new Client({
-//     user: "neondb_owner",
-//     password: "npg_RTzw5X1mglJV",
-//     port: 5432,
-//     host: "ep-calm-fire-a1l4vgj7-pooler.ap-southeast-1.aws.neon.tech",
-//     database: "neondb",
-//     ssl: true
-// });
-function main() {
-    return __awaiter(this, void 0, void 0, function* () {
-        yield pgClient.connect();
-        const response = yield pgClient.query(`SELECT * FROM users `);
-        console.log(response.rows);
-    });
-}
-main();
+pgClient.connect();
+app.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const username = req.body.username;
+    const password = req.body.password;
+    const email = req.body.email;
+    try {
+        const insertQuery = `INSERT INTO users (username, email, password) VALUES ('${username}', '${email}', '${password}');`;
+        const response = yield pgClient.query(insertQuery);
+        res.status(201).json({
+            message: "You Have Signed Up!"
+        });
+    }
+    catch (error) {
+        res.status(500).json({
+            Msg: "Error while signing up"
+        });
+    }
+}));
+app.listen(3000, () => {
+    console.log("Server Running at PORT 3000");
+});
