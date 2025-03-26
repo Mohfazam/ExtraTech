@@ -33,4 +33,17 @@ function FindUser() {
         console.log(user);
     });
 }
-FindUser();
+function FindUserTodo() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const user = yield client.user.findFirst({
+            where: {
+                id: 1
+            },
+            include: {
+                todos: true
+            }
+        });
+        console.log(user);
+    });
+}
+FindUserTodo();
