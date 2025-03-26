@@ -28,11 +28,13 @@ app.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     const pincode = req.body.pincode;
     try {
         const insertQuery = `INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING id;`;
+        const addressInsertQuery = `INSERT INTO addresses (city, country, street, pincode, user_id) VALUES($1, $2, $3, $4, $5)`;
+        pgClient.query("BEGIN;");
         const response = yield pgClient.query(insertQuery, [username, email, password]);
         const userId = response.rows[0].id;
         console.log(userId);
-        const addressInsertQuery = `INSERT INTO addresses (city, country, street, pincode, user_id) VALUES($1, $2, $3, $4, $5)`;
         const addressInsertResponse = yield pgClient.query(addressInsertQuery, [city, country, street, pincode, userId]);
+        pgClient.query("COMMIT;");
         res.status(201).json({
             message: "You Have Signed Up!"
         });
@@ -40,6 +42,25 @@ app.post("/signup", (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     catch (error) {
         res.status(500).json({
             Msg: "Error while signing up"
+        });
+    }
+}));
+app.get("/metadata", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.query.id;
+    try {
+        const query1 = `SELECT * FROM users WHERE id=$1`;
+        const response1 = yield pgClient.query(query1, [id]);
+        const query2 = `SELECT FROM addresses WHERE user_id=$1`;
+        const response2 = yield pgClient.query(query2, [id]);
+        res.status(201).json({
+            user: response1.rows[0],
+            addresses: response2.rows[0]
+        });
+    }
+    catch (err) {
+        res.status(400).json({
+            msg: "error",
+            error: err
         });
     }
 }));

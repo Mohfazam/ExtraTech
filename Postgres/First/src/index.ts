@@ -47,6 +47,28 @@ app.post("/signup", async (req, res) => {
     
 });
 
+app.get("/metadata", async (req, res) => {
+    const id = req.query.id;
+
+    try{
+        const query1 = `SELECT * FROM users WHERE id=$1`;
+    const response1 = await pgClient.query(query1, [id]);
+
+    const query2 = `SELECT FROM addresses WHERE user_id=$1`;
+    const response2 = await pgClient.query(query2, [id]);
+
+    res.status(201).json({
+        user: response1.rows[0],
+        addresses: response2.rows[0]
+    })
+    } catch(err){
+        res.status(400).json({
+            msg: "error",
+            error: err
+        });
+    }
+})
+
 
 app.listen(3000, () => {
     console.log("Server Running at PORT 3000");
