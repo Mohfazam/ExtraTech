@@ -64,6 +64,16 @@ app.get("/metadata", (req, res) => __awaiter(void 0, void 0, void 0, function* (
         });
     }
 }));
+app.get("/better-metadata", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const id = req.query.id;
+    const query = `SELECT users.id, users.username, users.email, addresses.city, addresses.city, addresses.country, addresses.street, addresses.pincode 
+FROM users JOIN addresses ON users.id = addresses.user_id 
+WHERE users.id = $1;`;
+    const response = yield pgClient.query(query, [id]);
+    res.status(201).json({
+        msg: response.rows
+    });
+}));
 app.listen(3000, () => {
     console.log("Server Running at PORT 3000");
 });
