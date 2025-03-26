@@ -10,6 +10,7 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "prisma": "^6.5.0",
     "typescript": "^5.8.2"
   }
 }
