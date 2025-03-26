@@ -1,1 +1,1 @@
-console.log("Hello");
+import { PrismaClient } from "@prisma/client";
