@@ -15,19 +15,20 @@ app.get("/users", async (req, res) => {
 })
 app.get("/todos/:id", async (req, res) => {
 
-    const id = req.params.id as unknown as number;
-    const users = await client.user.findFirst({
+    const id = req.params.id;
+    const user = await client.user.findFirst({
         where: {
-            id: id
+            id: Number(id)
         }, 
         select:{
-            todos: true
+            todos: true,
+            username: true
         }
     });
 
     res.status(201).json({
         msg: "All the Users:",
-        users: users
+        users: user
     })
 })
 
@@ -69,4 +70,6 @@ async function FindUserTodo() {
     console.log(user);
 }
 
-app.listen(3000);
+app.listen(3000, () => {
+    console.log("Server Running at port 3000");
+});
