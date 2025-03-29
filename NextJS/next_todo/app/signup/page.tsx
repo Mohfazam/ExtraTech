@@ -2,8 +2,11 @@
 
 import axios from "axios"
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function signup(){
+
+    const router = useRouter();
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -23,6 +26,8 @@ export default function signup(){
                     password
                 }
                 );
+
+                router.push("/signin");
             }}>Sign Up</button>
         </div>
     </div>
