@@ -5,7 +5,11 @@ export default async function profile(){
     
 
     
-        const response = await axios.get("http://localhost:3000/api/profile")
+        const response = await axios.get("http://localhost:3000/api/profile", {
+            headers: {
+                authorization: localStorage.getItem("token")
+            }
+        })
     
         const data = JSON.stringify(response.data);
 
