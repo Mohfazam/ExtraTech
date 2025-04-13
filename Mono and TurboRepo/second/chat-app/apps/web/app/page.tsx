@@ -11,7 +11,7 @@ export default function Home(){
     }}>
 
       Hello
-      <TextInput placeholder='World'/>
+      <TextInput placeholder='World' size='big'/>
     </div>
   )
 }
