@@ -15,6 +15,6 @@ app.get("/chat", (req, res) => {
     res.send("Hello World");
 })
 
-app.listen(3000, () => {
-    console.log("Server Running at port 3000");
+app.listen(3001, () => {
+    console.log("Server Running at port 3001");
 })
