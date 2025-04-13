@@ -13,7 +13,7 @@ export function TextInput({
                 borderColor: "black",
                 borderWidth: 1,
                 
-            }}></input> 
+            }} />
         </div>
     )
 }

@@ -1,11 +1,17 @@
-import {TextInput} from '../../../packages/ui/src/Text-input'
+import {TextInput} from '@repo/ui/Text-input'
 
 export default function Home(){
   return(
-    <div>
+    <div style={{
+      height: "100vh",
+      width: "100vw",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center"
+    }}>
 
       Hello
-      <TextInput />
+      <TextInput placeholder='World'/>
     </div>
   )
 }
