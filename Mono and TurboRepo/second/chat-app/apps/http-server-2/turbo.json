@@ -1,0 +1,8 @@
+{
+    "extends":["//"],
+    "tasks":{
+        "builds":{
+            "outputs": ["dist/**"]
+        }
+    }
+}
