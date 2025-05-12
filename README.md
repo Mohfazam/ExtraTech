@@ -210,3 +210,13 @@ npx tsc --init
 npm install prisma
 npx prisma init
 npx prisma migrate dev
+
+
+
+
+---
+#removing .env when pushed:
+git rm -r --cached .env
+git add .
+git commit -m "Commit Msg"
+git push origin main (or) git push -u origin main
