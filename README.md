@@ -206,13 +206,11 @@ npm init -y
 npm i typescript
 npx tsc --init
 
-
-npm install prisma
-npx prisma init
-npx prisma migrate dev
-
-
-
+---
+npm install prisma(Installing Prisma)
+npx prisma init(Initializing prisma in the project)
+npx prisma migrate dev(To migrate the database)
+npx prisma generate(to generate the Provider/Client)
 
 ---
 #removing .env when pushed:
