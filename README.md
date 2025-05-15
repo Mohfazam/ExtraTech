@@ -202,15 +202,15 @@ This repository is a collection of foundational projects I built while learning 
 
 
 
-npm init -y 
-npm i typescript 
-npx tsc --init 
+npm init -y .
+npm i typescript .
+npx tsc --init .
 
 ---
-npm install prisma(Installing Prisma) 
-npx prisma init(Initializing prisma in the project)  
-npx prisma migrate dev(To migrate the database) 
-npx prisma generate(to generate the Provider/Client) 
+npm install prisma(Installing Prisma) .
+npx prisma init(Initializing prisma in the project) . 
+npx prisma migrate dev(To migrate the database) .
+npx prisma generate(to generate the Provider/Client) .
 
 ---
 #removing .env when pushed:
