@@ -202,19 +202,19 @@ This repository is a collection of foundational projects I built while learning 
 
 
 
--`npm init -y`
--`npm i typescript`
--`npx tsc --init`
+-`npm init -y`  
+-`npm i typescript`  
+-`npx tsc --init`  
 
 ---
-- `npm install prisma`
-- `npx prisma init`
-- `npx prisma migrate dev`
-- `npx prisma generate`
+npm install prisma(Installing Prisma)  
+npx prisma init(Initializing prisma in the project)  
+npx prisma migrate dev(To migrate the database)  
+npx prisma generate(to generate the Provider/Client)  
 
 ---
-#removing .env when pushed:
-git rm -r --cached .env
-git add .
-git commit -m "Commit Msg"
-git push origin main (or) git push -u origin main
+#removing .env when pushed:  
+git rm -r --cached .env  
+git add .  
+git commit -m "Commit Msg"  
+git push origin main (or) git push -u origin main  
