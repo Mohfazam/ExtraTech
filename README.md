@@ -222,6 +222,13 @@ git push origin main (or) git push -u origin main
 ###AWS
 
 Navigate to the .pem file folder
-Connect through SSH -`ssh -i private.pem root@instanceid`
-Change the TOO open permission -` chmod 700 private.pem`  
+Connect through SSH -`ssh -i private.pem root@instanceid`  
+Change the TOO open permission -` chmod 700 private.pem`   
 
+
+---
+###REVERSE(PROSXY NGINX)
+
+
+-`sudo apt update`  
+-`sudo apt install nginx`  
