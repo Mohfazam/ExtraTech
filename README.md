@@ -227,6 +227,17 @@ Navigate to the .pem file folder
 Connect through SSH -`ssh -i private.pem root@instanceid`  
 Change the TOO open permission -` chmod 700 private.pem`   
 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  
+
+1: .pem properties -> security -> advanced -> disable inheritence -> for all object  
+2: Run this commands in the .epm folder  
+-`icacls AIDUCATE_Sarwar.pem /inheritance:r`  
+-`icacls AIDUCATE_Sarwar.pem /grant:r "%USERNAME%:R"`
+3: SSH into the VM
+
+
 
 ---
 ###REVERSE(PROSXY NGINX)
