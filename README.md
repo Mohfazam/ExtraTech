@@ -251,3 +251,8 @@ Change the TOO open permission -` chmod 700 private.pem`
 
 See all the processes running on all the ports: -`lsof`   
 To see a specific process on any port -`lsof -i :3000`{replace the 3000 with your port number}    
+---
+Install pm2 -`sudo npm i -g pm2`    
+Start Pm2 -`pm2 start script.js`  
+Status of Pm2 -`pm2 status`   
+
