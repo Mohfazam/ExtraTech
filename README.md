@@ -249,5 +249,5 @@ Change the TOO open permission -` chmod 700 private.pem`
 
 ---
 
-See all the processes running on all the ports: -`lsof`  
-To see a specific process on any port -`lsof -i :3000`{replace the 3000 with your port number}  
+See all the processes running on all the ports: -`lsof`   
+To see a specific process on any port -`lsof -i :3000`{replace the 3000 with your port number}    
