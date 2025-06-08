@@ -256,3 +256,65 @@ Install pm2 -`sudo npm i -g pm2`
 Start Pm2 -`pm2 start script.js`  
 Status of Pm2 -`pm2 status`   
 
+---
+### **Initializing TurboRepo**
+
+# 🧱 Turborepo Initialization – Step-by-Step Setup Guide
+
+## ✅ Initial Setup
+
+1. **Initialize an empty turborepo**  
+   Use `npx create-turbo@latest` or manually configure using a monorepo structure.
+
+2. **Delete unnecessary apps**  
+   Removed the `docs` app to clean up unused boilerplate code.
+
+3. **Add custom apps/packages**  
+   Created the following apps inside the `apps/` or `packages/` directory:
+   - `http-server`
+   - `ws-server`
+
+---
+
+## 📦 Configuration Files
+
+4. **Add `package.json` in any new apps**  
+   Ensure each project (`app1` and `app2`) has its own `package.json` to manage dependencies and scripts.
+
+5. **Add and configure `tsconfig.json` in both apps**  
+   Created a `tsconfig.json` in both places and extended the shared configuration:
+
+   ```json
+   {
+     "extends": "@repo/typescript-config/base.json"
+   }
+
+6. **Add the shared extended depencies into the `tsconfig.json`**
+```tsconfig.json
+{
+    "extends":"@repo/typescript-config/base.json",
+    "compilerOptions": {
+        "rootDir": "./src",
+        "outDir": "./dist"
+    }
+}
+```
+7. **Add Dev, Build, and Start Scripts
+   ```package.json
+   "build":"tsc -b",
+    "start":"node ./dist/index.js",
+    "dev":"npm run build && npm run start"
+   ```
+8. **Add the new configurationn as dependencies**
+   ```package.json
+   "dependencies": {
+    "@repo/typescript-config":"workspace:*"
+   }
+   ```
+  
+9. **Install Dependencies***
+   all this configurations are just add but to make them work we need to update our workspace using our package manager(preferable pnpm)
+      `pnpm install`
+
+
+
